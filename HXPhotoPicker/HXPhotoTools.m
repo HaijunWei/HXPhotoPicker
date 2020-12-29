@@ -1030,20 +1030,21 @@ NSString *const hx_kKeyContentIdentifier = @"com.apple.quicktime.content.identif
     
 + (CGFloat)getStatusBarHeight {
     CGFloat statusBarHeight = 0;
-    if (@available(iOS 13.0, *)) {
-        UIStatusBarManager *statusBarManager = [UIApplication sharedApplication].windows.firstObject.windowScene.statusBarManager;
-        statusBarHeight = statusBarManager.statusBarFrame.size.height;
+//    if (@available(iOS 13.0, *)) {
+        // 使用此方式在flutter中有时获取不到正确高度，还是才用久方法
+//        UIStatusBarManager *statusBarManager = [UIApplication sharedApplication].windows.firstObject.windowScene.statusBarManager;
+//        statusBarHeight = statusBarManager.statusBarFrame.size.height;
+//        if ([UIApplication sharedApplication].statusBarHidden) {
+//            statusBarHeight = HX_IS_IPhoneX_All ? 44: 20;
+//        }
+//    }
+//    else {
         if ([UIApplication sharedApplication].statusBarHidden) {
             statusBarHeight = HX_IS_IPhoneX_All ? 44: 20;
-        }
-    }
-    else {
-        if ([UIApplication sharedApplication].statusBarHidden) {
-            statusBarHeight = HX_IS_IPhoneX_All ? 44: 20;
-        }else {
+        } else {
             statusBarHeight = [UIApplication sharedApplication].statusBarFrame.size.height;
         }
-    }
+//    }
     return statusBarHeight;
 }
 @end
